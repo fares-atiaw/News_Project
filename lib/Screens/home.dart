@@ -5,9 +5,14 @@ import 'package:news_app/Models/category.dart';
 import '../Components/drawable_widget.dart';
 import '../Fragments/main_categories_fragment.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   static const String routeName = 'main-categories';
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -39,6 +44,14 @@ class HomeScreen extends StatelessWidget {
 
   void onCategoryClicked(Category category) {
     print(category.title);
+    print('888');
   }
 
+// Category? selectedCategory=null;
+//
+// void onCategoryClick(Category category){
+//   // if someone clicked on Category, it will go to category details view
+//   selectedCategory = category;
+//   setState(() {});
+// }
 }

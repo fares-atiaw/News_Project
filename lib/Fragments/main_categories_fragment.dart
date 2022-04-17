@@ -29,10 +29,9 @@ class F_MainCategories extends StatelessWidget {
                 crossAxisSpacing: 0,
                 childAspectRatio: 4 / 3.5),
             itemBuilder: (context, index) => InkWell(
+                onTap: onCategory(mainCategories[index]),
                 child: CategoryItem(
-                    category: mainCategories[index],
-                    index: index,
-                    onCategoryClicked: onCategoryClicked)),
+                    category: mainCategories[index], index: index)),
             itemCount: mainCategories.length,
           ),
         ))
@@ -40,7 +39,7 @@ class F_MainCategories extends StatelessWidget {
     );
   }
 
-  void onCategoryClicked(Category o) {
-    onCategory(o);
-  }
+// void onCategoryClicked(Category o) {
+//   onCategory(o);
+// }
 }
