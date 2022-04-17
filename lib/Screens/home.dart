@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:news_app/Models/category.dart';
 
 import '../Components/drawable_widget.dart';
 import '../Fragments/main_categories_fragment.dart';
@@ -31,8 +32,13 @@ class HomeScreen extends StatelessWidget {
         drawer: Drawer(
           child: MyDrawable(),
         ),
-        body: F_MainCategories(),
+        body: F_MainCategories(onCategoryClicked),
       ),
     );
   }
+
+  void onCategoryClicked(Category category) {
+    print(category.title);
+  }
+
 }
