@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:news_app/Models/category.dart';
 
 import '../Components/drawable_widget.dart';
+import '../Fragments/category_details_fragment.dart';
 import '../Fragments/main_categories_fragment.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -13,6 +14,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  Category? selectedCategory;
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -35,23 +38,37 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         drawer: Drawer(
-          child: MyDrawable(),
+          child: MyDrawable(onButtonClicked: onDrawableSelected),
+          // child: MyDrawable(onButtonClicked:(t){onDrawableSelected(t);}),    //إحتياطي
         ),
-        body: F_MainCategories(onCategoryClicked),
+        body: selectedCategory == null // switch the fragment if you want
+            ? F_MainCategories(onCategoryClicked)
+            : F_CategoryDetails(selectedCategory!),
       ),
     );
   }
 
   void onCategoryClicked(Category category) {
     print(category.title);
-    print('888');
+    selectedCategory = category;
+    setState(() {});
   }
 
-// Category? selectedCategory=null;
-//
-// void onCategoryClick(Category category){
-//   // if someone clicked on Category, it will go to category details view
-//   selectedCategory = category;
-//   setState(() {});
-// }
+  void onDrawableSelected(String t) {
+    if (t == MyDrawable.btn_category && selectedCategory == null) {
+      print('You already in categories screen');
+    } else if (t == MyDrawable.btn_category) {
+      selectedCategory = null;
+      setState(() {
+        Navigator.pop(context);
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    imageCache!.clear();
+    imageCache!.clearLiveImages();
+  }
 }

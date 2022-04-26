@@ -17,6 +17,7 @@ class _MyTabControllerState extends State<MyTabController> {
 
   @override
   Widget build(BuildContext context) {
+    //print(widget.sources[1].name); @ has data
     return DefaultTabController(
         length: widget.sources.length,
         child: Column(
@@ -26,7 +27,7 @@ class _MyTabControllerState extends State<MyTabController> {
               indicatorColor: Colors.transparent,
               onTap: (index) {
                 selected = index;
-                print(selected);
+                print('Tap ${selected} selected');
                 setState(() {});
               },
               tabs: widget.sources

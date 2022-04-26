@@ -1,6 +1,5 @@
-// import 'dart:html';
-
 import 'package:flutter/material.dart';
+import 'package:news_app/Components/news_item.dart';
 import 'package:news_app/Models/news_response.dart';
 import 'package:news_app/Models/sources_response.dart';
 import 'package:news_app/api_manager.dart';
@@ -27,7 +26,6 @@ class _News_ContainerState extends State<News_Container> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        //Text(widget.selectedSources.name ?? "ffffff"),
         FutureBuilder<NewsResponse>(
             future: news,
             builder: (context, snapshot) {
@@ -73,13 +71,13 @@ class _News_ContainerState extends State<News_Container> {
                     } else {
                       // Else server comes with data
                       var data = snapshot.data?.articles ?? [];
+                      print('{${widget.selectedSource.id}} tab works here');
                       return Expanded(
                         child: ListView.builder(
                           itemCount: data.length,
                           itemBuilder: (BuildContext context, int index) {
-                            print(widget.selectedSource.id);
-                            //print(index);
-                            return Text(data[index].title ?? "");
+                            print('{${data[index].author}} __ author');
+                            return NewsItem(news: data[index]);
                           },
                         ),
                       );

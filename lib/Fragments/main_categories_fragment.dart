@@ -29,7 +29,10 @@ class F_MainCategories extends StatelessWidget {
                 crossAxisSpacing: 0,
                 childAspectRatio: 4 / 3.5),
             itemBuilder: (context, index) => InkWell(
-                onTap: onCategory(mainCategories[index]),
+                onTap: () {
+                  onCategory(mainCategories[index]);
+                },
+                //onCategory(mainCategories[index])  OR  (){print('Here I am');}
                 child: CategoryItem(
                     category: mainCategories[index], index: index)),
             itemCount: mainCategories.length,

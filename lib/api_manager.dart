@@ -9,10 +9,12 @@ class API_Manager {
   static String baseURL = "newsapi.org";
 
 //https://newsapi.org/v2/top-headlines/sources?apiKey=9f8642e7503f43cb872ad0be9bc86b37
-  static Future<SourcesResponse> getSources() async {
+  static Future<SourcesResponse> getSources(String categoryID) async {
     try {
-      Uri url = Uri.https(baseURL, "v2/top-headlines/sources",
-          {"apiKey": "9f8642e7503f43cb872ad0be9bc86b37"});
+      Uri url = Uri.https(baseURL, "v2/top-headlines/sources", {
+        "apiKey": "9f8642e7503f43cb872ad0be9bc86b37",
+        "category": categoryID
+      });
       var response = await http.get(url);
       return SourcesResponse.fromJson(jsonDecode(response
           .body)); // String to Map , then from json map to our model-class
@@ -26,7 +28,7 @@ class API_Manager {
   static Future<NewsResponse> getNews(String sourceID) async {
     try {
       Uri url = Uri.https(baseURL, "v2/everything", {
-        // "q" : sourceName, //"abc-news"
+        // "q" : sourceID, //"abc-news"
         "sources": sourceID, //"abc-news"
         "apiKey": "9f8642e7503f43cb872ad0be9bc86b37"
       });

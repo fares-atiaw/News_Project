@@ -1,8 +1,12 @@
-// import 'dart:html';
-
 import 'package:flutter/material.dart';
 
 class MyDrawable extends StatelessWidget {
+  static const String btn_category = 'c';
+  static const String btn_settings = 's';
+  Function onButtonClicked;
+
+  MyDrawable({required this.onButtonClicked});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,9 +36,15 @@ class MyDrawable extends StatelessWidget {
                 ],
               ),
             ),
+            onTap: () {
+              onButtonClicked(btn_category);
+            },
             //onTap: Navigator,
           ),
-          InkWell(
+          /*InkWell(
+            onTap: (){
+              onButtonClicked(btn_settings);
+            },
             child: Padding(
               padding: const EdgeInsets.all(18.0),
               child: Row(
@@ -47,7 +57,7 @@ class MyDrawable extends StatelessWidget {
                 ],
               ),
             ),
-          )
+          )*/
         ],
       ),
     );
