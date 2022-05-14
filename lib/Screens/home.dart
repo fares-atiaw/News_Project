@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:news_app/Models/category.dart';
 
 import '../Components/drawable_widget.dart';
@@ -15,6 +16,18 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   Category? selectedCategory;
+
+  @override
+  void initState() {
+    super.initState();
+    initialization();
+  }
+
+  void initialization() async {
+    await Future.delayed(const Duration(milliseconds: 500));
+    print('go!');
+    FlutterNativeSplash.remove();
+  }
 
   @override
   Widget build(BuildContext context) {
